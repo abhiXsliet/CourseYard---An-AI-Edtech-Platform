@@ -77,6 +77,7 @@ exports.categoryPageDetails = async (req, res) => {
     const categoriesExceptSelected = await Category.find({
       _id: { $ne: categoryId },
     })
+    console.log("CATEGORIES EXCEPT SELECTED", categoriesExceptSelected);
     let differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id
@@ -108,6 +109,7 @@ exports.categoryPageDetails = async (req, res) => {
       },
     })
   } catch (error) {
+    console.log("Error:", error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
